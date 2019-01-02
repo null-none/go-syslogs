@@ -1,20 +1,14 @@
 package views
 
 import (
-	"runtime"
 	"net/http"
-    "fmt"
+	"fmt"
+	"../structure"
 )
 
-func bToMb(b uint64) uint64 {
-	return b / 1024 / 1024
-}
-
-
 func MemoryHandler(w http.ResponseWriter, r *http.Request) {
-	var m runtime.MemStats
-	runtime.ReadMemStats(&m)
-	fmt.Fprintf(w, "Alloc: %v MiB\n", bToMb(m.Alloc))
-	fmt.Fprintf(w, "TotalAlloc: %v MiB\n", bToMb(m.TotalAlloc))
-	fmt.Fprintf(w, "Sys: %v MiB\n", bToMb(m.Sys))
+	memory := structure.MemoryUsage()
+	fmt.Fprintf(w, "Alloc: %v MiB\n", memory.Alloc)
+	fmt.Fprintf(w, "TotalAlloc: %v MiB\n", memory.TotalAlloc)
+	fmt.Fprintf(w, "Sys: %v MiB\n", memory.Sys)
 }
