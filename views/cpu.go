@@ -10,5 +10,5 @@ import (
 
 func CpuHandler(w http.ResponseWriter, r *http.Request) {
 	cpu := structure.CpuUsage()
-	fmt.Fprintf(w, "Cores: %v\n", cpu.cores)
+	fmt.Fprintf(w, "%+v", cpu)
 }

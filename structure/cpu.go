@@ -5,11 +5,11 @@ import (
 )
 
 type CpuStatus struct {
-	cores  int `json:"cpu"`
+	Cores  uint64 `json:"cores"`
 }
   
 func CpuUsage() (cpu CpuStatus) {
-	cpu.cores = runtime.NumCPU()
+	cpu.Cores = uint64(runtime.NumCPU())
 	return cpu
  }
  
